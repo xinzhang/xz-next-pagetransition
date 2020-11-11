@@ -1,7 +1,8 @@
 import Head from "next/head";
+import Link from 'next/Link';
 import styles from "../styles/Home.module.css";
 import navs from "../styles/Nav.module.css";
-import { AnimateSharedLayout } from "framer-motion";
+import {motion} from 'framer-motion';
 
 export default function Home() {
   return (
@@ -43,12 +44,15 @@ export default function Home() {
         {["car", "headphone", "shoe"].map((product) => (
           <div className={styles["product-container"]}>
             <h3>{product}</h3>
-            <a href={`/${product}`}>
-              <img
+            <Link href={`/${product}`}>
+              <motion.img
+                layoutId={product}
+                animate={{ scale: 1 }}
+                whileHover={ {scale: 1.1}}
                 className={styles["product-img"]}
                 src={`/images/${product}.jpg`}
               />
-            </a>
+            </Link>
           </div>
         ))}
       </main>
